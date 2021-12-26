@@ -2,7 +2,7 @@ from imageai.Classification import ImageClassification
 import os
 
 
-img="test2.jpg"
+img="test_cat.jpg"
 execution_path = os.getcwd()
 
 prediction = ImageClassification()
