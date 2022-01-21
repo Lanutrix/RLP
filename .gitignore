@@ -5,3 +5,8 @@ test.exe
 resnet50_imagenet_tf.2.0.h5
 yolo.h5
 **.jpg
+__pycache__
+**.avi
+**.mp4
+/scr
+**.txt
