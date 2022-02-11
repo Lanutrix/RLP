@@ -16,9 +16,9 @@ def forFrame(frame_number, output_array, output_count):
     text=dep(frame_number,output_array,text)
     
 
-video_path = detector.detectObjectsFromVideo(input_file_path=os.path.join(execution_path, "scr/video/vid.mp4"),
-                            output_file_path=os.path.join(execution_path, "scr/video/vid_new")
-                            , frames_per_second=20, log_progress=True, minimum_percentage_probability=40, detection_timeout=3, per_frame_function=forFrame)
+video_path = detector.detectObjectsFromVideo(input_file_path=os.path.join(execution_path, "scr/video/VID_2022.mp4"),
+                            output_file_path=os.path.join(execution_path, "scr/video/vid2022_new")
+                            , frames_per_second=20, log_progress=True, minimum_percentage_probability=40, detection_timeout=4, per_frame_function=forFrame)
 
 
 nastr(text)
