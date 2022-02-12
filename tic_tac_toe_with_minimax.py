@@ -1,5 +1,7 @@
 import math
+from random import randint
 import sys
+from xml.dom.pulldom import parseString
 import numpy as np
 
 EMPTY_CHAR = 0
@@ -87,7 +89,7 @@ def xod(m,znak):
 def get_pc(pole):
     move = None
     best_score = -sys.maxsize
-    board = [pole[y].copy() for y in range(3)]
+    board = np.copy(pole)
     for y in range(3):
         for x in range(3):
             if board[y][x] == EMPTY_CHAR:
@@ -119,22 +121,34 @@ def get_user():
         except:
             pass
 
-while 1:   
+def xodit():
+    pass
+while 1:
+    kxto=randint(0,1)+2
+    pole = np.zeros((3,3))
     while 1:
-        show(pole)
-        if is_draw(pole):
-            print('is draw')
-            break
+        
 
-        get_user()
-        if is_win(user_char, pole):
-            print('you win')
-            break
-
-        move = get_pc(pole)
-        if move is not None:
-            x, y = move
-            pole[y][x] = computer_char
-            if is_win(computer_char, pole):
-                print('you lose')
+        if kxto==user_char:
+            show(pole)
+            if is_draw(pole):
+                print('is draw')
                 break
+
+        
+            if is_win(user_char, pole):
+                print('you win')
+                break
+            get_user()
+            kxto=computer_char
+
+        
+        elif kxto==computer_char:
+            move = get_pc(pole)
+            if move is not None:
+                x, y = move
+                pole[y][x] = computer_char
+                if is_win(computer_char, pole):
+                    print('you lose')
+                    break
+            kxto=user_char
