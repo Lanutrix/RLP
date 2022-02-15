@@ -3,6 +3,8 @@ from random import randint
 import sys
 from xml.dom.pulldom import parseString
 import numpy as np
+from save_dataset import xysave, rasb, saveall
+
 
 EMPTY_CHAR = 0
 AI_TURN = True
@@ -16,7 +18,8 @@ scores = {
 }
 pole = np.zeros((3,3))
 
-
+list=""
+xy=""
 
 def is_win(c, a):
     for i in range(3):
@@ -73,7 +76,6 @@ def xod_pc(pole):
                 if score > best_score:
                     best_score = score
                     move = (x, y)
-
     return move
 
 def xod(m,znak):
@@ -105,11 +107,11 @@ def show(pole):
     for i in range(3):
         for j in range(3):
             if pole[i][j]==0:
-                print(3*i+j+1,end=' ')    
+                print('\033[1;37m'+str(3*i+j+1),end=' ')    
             elif pole[i][j]==2:
-                print('O',end=' ')
+                print('\033[36mO',end=' ')
             if pole[i][j]==3:
-                print('x',end=' ')
+                print('\033[35mx',end=' ')
         print()
 
 def get_user():
@@ -147,8 +149,12 @@ while 1:
             move = get_pc(pole)
             if move is not None:
                 x, y = move
+                list=rasb(pole,list)
+                xy=xysave(y,x,xy)
                 pole[y][x] = computer_char
                 if is_win(computer_char, pole):
                     print('you lose')
                     break
             kxto=user_char
+    if input() == "save":
+        saveall(list,xy)
