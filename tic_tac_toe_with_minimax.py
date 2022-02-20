@@ -149,12 +149,10 @@ while 1:
             move = get_pc(pole)
             if move is not None:
                 x, y = move
-                list=rasb(pole,list)
-                xy=xysave(y,x,xy)
+                saveall(pole,y,x)
                 pole[y][x] = computer_char
                 if is_win(computer_char, pole):
                     print('you lose')
                     break
             kxto=user_char
-    if input() == "save":
-        saveall(list,xy)
+        

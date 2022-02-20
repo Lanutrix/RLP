@@ -1,38 +1,36 @@
 import numpy as np
 import math
+import os
 board=np.zeros((3,3))
-
-list=''
-xy=""
-def rasb(pole, list):
+def rasb(pole):
+	list=""
 	list+='['
 	for i in range(3):
-		list+='['
+		list+=''
 		for k in range(3):
 			list+=str(int(pole[i][k]))
 			if k != 2:
 				list+=','
-		list+=']'
+		list+=''
 		if i != 2:
 			list+=','
 	list+='],'
+	cd='cd /home/dmodv/git_project/testing/ && '
+	os.system(cd+"touch savepole.txt")
+	os.system('echo "'+list+'" >> savepole.txt')
+def xysave(y,x):
+	xy="["+str(y)+", "+str(x)+"],"
+	cd='cd /home/dmodv/git_project/testing/ && '
+	os.system(cd+"touch savexy.txt")
+	os.system('echo "'+xy+'" >> savexy.txt')
+def saveall(pole,y,x):
+	rasb(pole)
+	xysave(y,x)
 	
-	return list
-def xysave(y,x,xy):
-	xy+="["+str(y)+", "+str(x)+"],"
-	return xy
-
-for i in range(1):
+for p in range(1):
 	for i in range(3):
 		for j in range(3):
 			board[i][j]=2
-			list=rasb(board,list)+"\n"
-			xy=xysave(i,j,xy)
+			saveall(board,i,j)
 
-def saveall(list,xy):
-	file=open('ststistic.txt', 'w+')
-	file.write(list)
-	file.close()
 
-	file=open('ststistic_xy.txt', 'w+')
-	file.write(xy)

@@ -18,10 +18,10 @@ y_test = keras.utils.to_categorical(y_test)
 # x = np.expand_dims(x_test[n], axis=0)/255
 n=595
 x = np.expand_dims(x_test[n], axis=0)
+def prd(x):
+    return model.predict(x)
 
-result=model.predict(x)
-
-print(np.argmax(result))
+print(np.argmax(prd(x)))
 
 
 
