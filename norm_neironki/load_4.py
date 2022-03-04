@@ -4,7 +4,7 @@ from tensorflow import keras
 from keras.utils import np_utils
 import random, time
 
-model = keras.models.load_model('/home/dmodv/git_project/testing/education/main_1.h5')
+model = keras.models.load_model('/home/dmodv/git_project/testing/education/main_1_50_eph.h5')
 
 detectionClass=['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
@@ -19,7 +19,7 @@ x_test = x_test/255
 y_train = np_utils.to_categorical(y_train)
 y_test  = np_utils.to_categorical(y_test )
 
-while 1:
+for i in range(2):
     n = random.randint(0,9999)
 
     x = np.expand_dims(x_test[n], axis=0)

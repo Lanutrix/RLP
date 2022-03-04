@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from tensorflow import keras
 from keras import Sequential
 from keras.layers import Dense, Conv2D, Flatten
-from keras.models import load_model
 
 
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
@@ -36,7 +35,7 @@ model.add(Dense(10, activation="softmax"))
 print(model.summary())
 
 batch_size = 128
-epochs = 1
+epochs = 10
 
 model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=['accuracy'])
 
