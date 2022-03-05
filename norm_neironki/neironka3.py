@@ -58,4 +58,4 @@ print(np.argmax(result))
 
 
 
-model.save('/home/dmodv/git_project/testing/norm_neironki/model_1.h5', save_format='h5')
+model.save('education/model_1.h5', save_format='h5')

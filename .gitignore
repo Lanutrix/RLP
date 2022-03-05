@@ -4,6 +4,7 @@ test.cpp
 test.exe
 resnet50_imagenet_tf.2.0.h5
 **.jpg
+!frog.jpg
 __pycache__
 **.avi
 **.mp4
@@ -11,3 +12,4 @@ __pycache__
 **.txt
 /env/
 !requirements.txt
+*.sh

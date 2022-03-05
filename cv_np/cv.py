@@ -12,11 +12,11 @@ def h_w(img):
 gray =cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 h,w,center = h_w(gray)
 
-res= cv.resize(gray, (int(h/1.7), int(w/1.7)),cv.INTER_NEAREST)
+res= cv.resize(gray, (int(h/2), int(w/2)),cv.INTER_NEAREST)
 
 h,w,center = h_w(res)
 r=cv.getRotationMatrix2D(center,90,1)
 r_img=cv.warpAffine(res,r,(h,w))
-
+# r_img = cv.resize(img, (132, 32))
 cv.imshow("pain", r_img)
 cv.waitKey(0)
