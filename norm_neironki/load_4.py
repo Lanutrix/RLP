@@ -8,7 +8,7 @@ x,y = 32, 32
 
 img_input = add_img(path, x, y)
 
-model = keras.models.load_model('/home/dmodv/git_project/testing/education/main_1_50_eph.h5')
+model = keras.models.load_model('education/main_1_50_eph.h5')
 
 detectionClass=['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
@@ -17,8 +17,8 @@ x = np.expand_dims(img_input, axis=0)
 result = model.predict(x)
 predictClass=np.argmax(result)
 
-print(f"Class number: {predictClass}\nHis name: {detectionClass[predictClass]}")
+# print(f"Class number: {predictClass}\nHis name: {detectionClass[predictClass]}")
 
-cv.imshow("pain", img_input)
+cv.imshow(f"its: {detectionClass[predictClass]}", img_input)
 cv.waitKey(0)
 # i=input()
