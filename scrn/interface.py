@@ -1,9 +1,6 @@
-import os
 from model import make_yolov3_model
 from weight_parser import WeightReader
 from boxes import decode_netout, correct_yolo_boxes, do_nms, get_boxes
-from keras.preprocessing.image import load_img
-from keras.preprocessing.image import img_to_array
 import cv2 as cv
 from keras.models import load_model
 
@@ -29,11 +26,11 @@ labels = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", 
 
 yolov3 = make_yolov3_model()
 
-# weight_reader = WeightReader('yolov3.weights')
+weight_reader = WeightReader('yolov3.weights')
 
-# weight_reader.load_weights(yolov3)
+weight_reader.load_weights(yolov3)
 
-# yolov3.save('model.h5')
+yolov3.save('model.h5')
 
 yolov3 = load_model('model.h5')
 
@@ -55,15 +52,15 @@ def load_image_pixels(image, shape):
 # draw all results
 def draw_boxes(image, v_boxes, v_labels, v_scores):
   
-    # print(v_boxes,v_labels, v_scores)
+    print(v_boxes,v_labels, v_scores)
     for i in range(len(v_boxes)):
         box = v_boxes[i]
-        y1, x1, y2, x2 = box.ymin, box.xmin, box.ymax, box.xmax #10,20,100,200
-        # print(y1,y2, x1,x2, "  SIIIIIIIIIII!")
+        y1, x1, y2, x2 = box.ymin, box.xmin, box.ymax, box.xmax
+        # print(y1, x1, y2, x2)
         # width, height = x2 - x1, y2 - y1
-        image = cv.rectangle(image, (x1, y1), (x2,y2), (255, 255, 0), 2)
+        image = cv.rectangle(image, (x1, y1), (x2,y2), (255, 0, 0), 2)
     
-    cv.putText(image, f"Number of people in the audience: {len(v_boxes)}", (5, 25), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
+    cv.putText(image, f"Number of people in the audience: {len(v_boxes)}", (20, 40), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
         
     return image
 
@@ -77,9 +74,8 @@ def detect_image(image):
 
     # make prediction
     yhat = yolov3.predict(new_image)
-    # print(yhat.around,"  Координаты")
     # summarize the shape of the list of arrays
-    # print([a.shape for a in yhat])
+    print([a.shape for a in yhat])
     for i in range(len(yhat)):
         # decode the output of the network
         boxes += decode_netout(yhat[i][0], anchors[i], class_threshold, input_h, input_w)
@@ -107,7 +103,6 @@ def detect_image(image):
     # print(v_boxes[0].xmin)
 
     # draw what we found
-    # image = draw_boxes(image, v_boxes, v_labels, v_scores)
-
+    image = draw_boxes(image, v_boxes, v_labels, v_scores)
     
-    return len(v_boxes)
+    return image

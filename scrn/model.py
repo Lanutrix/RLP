@@ -1,5 +1,5 @@
-from keras.layers import Input, Lambda, Conv2D, BatchNormalization, LeakyReLU, ZeroPadding2D, UpSampling2D
-from keras.models import load_model, Model
+from keras.layers import Input, Conv2D, BatchNormalization, LeakyReLU, ZeroPadding2D, UpSampling2D
+from keras.models import Model
 from keras.layers.merge import add, concatenate
 
 def _conv_block(inp, convs, skip=True):

@@ -1,0 +1,22 @@
+<MainWidget>:
+    orientation: 'vertical'
+
+    name_input: name
+    btn: btn
+
+    TextInput:
+        id: name
+        multiline: False
+        height: 30
+        font_size: 20
+
+    Button:
+        id: btn
+        font_size: 20
+        color: 0,1,0,1
+        text: 'Пуск...'
+        size_hint: (1, 0.5)
+
+
+        on_press:
+            root.say_hello()

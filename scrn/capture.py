@@ -1,24 +1,24 @@
-import os
-import numpy as np
 import cv2 as cv
-from interface import detect_image
-def gui_ny_tipo(ok):
-    print("_"*35)
-    print(" "*15,ok)
-    print("_"*35)
-def main_fnc(path):
+from check import recognize
+def start_cv(path):
     cap = cv.VideoCapture(path)
     if not cap.isOpened():
         print("Cannot open camera")
         exit()
     while True:
+        # Capture frame-by-frame
         ret, frame = cap.read()
+        # if frame is read correctly ret is True
         if not ret:
             print("Can't receive frame (stream end?). Exiting ...")
             break
-        frame = detect_image(frame)
-        os.system("cls")
-
-        gui_ny_tipo(frame)
-
-    return "Complite"
+        # Our operations on the frame come here
+        # gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+        # Display the resulting frame
+        frame = recognize(frame)
+        cv.imshow('enter Q', frame)
+        if cv.waitKey(1) == ord('q'):
+            break
+    # When everything done, release the capture
+    cap.release()
+    cv.destroyAllWindows()
