@@ -4,7 +4,6 @@ def start_cv(path):
     cap = cv.VideoCapture(path)
     if not cap.isOpened():
         print("Cannot open camera")
-        exit()
     while True:
         # Capture frame-by-frame
         ret, frame = cap.read()

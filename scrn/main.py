@@ -4,9 +4,9 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.core.window import Window
+import cv2 as cv
 
 import capture
-
 
 
 Window.size = (450,100)
@@ -19,13 +19,17 @@ class MainWidget(BoxLayout):
         xyp = self.name_input.text
         ih = False
         try:
-            capf = open(xyp, "r")
-            capf.close()
+            xyp=int(xyp)
             ih = True
-        except: 
-            self.btn.color = (1,0,0,1)
-            self.name_input.text = ""
-            self.btn.text = "Что-то не так..."
+        except:
+            try:
+                capf = open(xyp, "r")
+                capf.close()
+                ih = True
+            except:
+                self.btn.color = (1,0,0,1)
+                self.name_input.text = ""
+                self.btn.text = "Что-то не так..."
         if ih:
             self.name_input.text = ""
             thread = threading.Thread(target = capture.start_cv(xyp))
