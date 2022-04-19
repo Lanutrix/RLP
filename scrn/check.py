@@ -3,7 +3,7 @@ import struct
 import cv2
 from numpy import expand_dims
 from keras.layers import Input, Conv2D, BatchNormalization, LeakyReLU, ZeroPadding2D, UpSampling2D
-from keras.models import Model
+from keras.models import load_model, Model
 from keras.layers.merge import add, concatenate
 class WeightReader:
 	def __init__(self, weight_file):
@@ -136,12 +136,13 @@ def make_yolov3_model():
 
 yolov3 = make_yolov3_model()
 
-weight_reader = WeightReader('yolov3.weights')
+# weight_reader = WeightReader('yolov3.weights')
 
-weight_reader.load_weights(yolov3)
+# weight_reader.load_weights(yolov3)
 
-yolov3.save('model.h5')
+# yolov3.save('model.h5')
 
+yolov3 = load_model('model.h5')
 
 
 class BoundBox:
@@ -273,7 +274,7 @@ def draw_boxes(image, v_boxes, v_labels, v_scores):
         # width, height = x2 - x1, y2 - y1
         image = cv2.rectangle(image, (x1, y1), (x2,y2), (255, 0, 0), 2)
     
-    cv2.putText(image, f"Number of people in the audience: {len(v_boxes)}", (200, 400), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
+    cv2.putText(image, f"Count of people =  {len(v_boxes)}", (200, 400), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
         
     return image
  

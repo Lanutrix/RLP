@@ -60,7 +60,7 @@ def draw_boxes(image, v_boxes, v_labels, v_scores):
         # width, height = x2 - x1, y2 - y1
         image = cv.rectangle(image, (x1, y1), (x2,y2), (255, 0, 0), 2)
     
-    cv.putText(image, f"Number of people in the audience: {len(v_boxes)}", (20, 40), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
+    cv.putText(image, f"Count of people = : {len(v_boxes)}", (20, 40), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
         
     return image
 

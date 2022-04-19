@@ -1,0 +1,42 @@
+# : import KivyCamera main1.KivyCamera
+
+<CameraClick>
+    orientation: 'vertical'
+    btn: btn
+    name_input: name
+    lbl: lbl
+    exibtn: exibtn
+    Button:
+        id: exibtn
+        font_size: 15
+        color: 0,1,0,1
+        text: 'Выйти из программы'
+        size_hint_y: None
+        height: '24dp'
+        on_press: root.exitapp()
+
+    
+    Label:
+        id: lbl
+        text: 'Введите индекс видеопотока'
+        font_size: 30
+        size_hint_y: None
+        height: '48dp'
+          
+    TextInput:
+        id: name
+        multiline: False
+        height: 10
+        font_size: 20
+        size_hint_y: None
+        height: '48dp'
+    Button:
+        id: btn
+        font_size: 20
+        color: 0,1,1,1
+        text: 'Запуск мониторинга'
+        size_hint_y: None
+        height: '48dp'
+        on_press: root.say_hello()
+            
+
