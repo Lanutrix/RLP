@@ -14,6 +14,7 @@ from kivy.properties import ObjectProperty
 from kivy.core.window import Window
 import cv2 as cv
 from check import recognize
+
     
 Builder.load_file('main1.kv')
 class KivyCamera(Image):
@@ -35,6 +36,7 @@ class KivyCamera(Image):
             image_texture.blit_buffer(buf, colorfmt='bgr', bufferfmt='ubyte')
             # display image from the texture
             self.texture = image_texture
+           
 
 class CameraClick(BoxLayout):
     def exitapp(self):
@@ -68,13 +70,11 @@ class CameraClick(BoxLayout):
         xyp = self.name_input.text
         
         try:
-            self.add_widget(KivyCamera(capture=cv.VideoCapture(int(xyp)), fps = 30))
+            self.add_widget(KivyCamera(capture=cv.VideoCapture(int(xyp)), fps = 60))
             f1 = self.good_state()
         except:
             f1 = self.bad_state()
         
-        # if f1:
-        #     threading.Thread(target=start_cv(xyp)).start()
             
 class MainApp(App):
 

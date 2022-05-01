@@ -265,7 +265,10 @@ def get_boxes(boxes, labels, thresh):
 	return v_boxes, v_labels, v_scores
 
 # draw all results
+
+
 def draw_boxes(image, v_boxes, v_labels, v_scores):
+   
     print(v_boxes,v_labels, v_scores)
     for i in range(len(v_boxes)):
         box = v_boxes[i]
@@ -273,11 +276,17 @@ def draw_boxes(image, v_boxes, v_labels, v_scores):
         # print(y1, x1, y2, x2)
         # width, height = x2 - x1, y2 - y1
         image = cv2.rectangle(image, (x1, y1), (x2,y2), (255, 0, 0), 2)
+    overlay = cv2.imread("testing/scrn/fon.jpg",cv2.IMREAD_UNCHANGED)
+    overlay = cv2.resize(overlay, (280, 70), interpolation=cv2.INTER_NEAREST)
+    cv2.putText(overlay, f"Count of people = {len(v_boxes)} ", (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
     
-    cv2.putText(image, f"Count of people =  {len(v_boxes)}", (200, 400), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
-        
+    rows,cols, channels = overlay.shape
+    overlay=cv2.addWeighted(image[250:250+rows, 0:0+cols],0,overlay,1,0)
+    image[400:400+rows, 170:170+cols ] = overlay
+    
+    
     return image
- 
+
  # define the anchors
 anchors = [[116,90, 156,198, 373,326], [30,61, 62,45, 59,119], [10,13, 16,30, 33,23]]
 
