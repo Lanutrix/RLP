@@ -60,7 +60,7 @@ def draw_boxes(image, v_boxes, v_labels, v_scores):
         # width, height = x2 - x1, y2 - y1
         image = cv.rectangle(image, (x1, y1), (x2,y2), (255, 0, 0), 2)
     
-    cv.putText(image, f"Count of people = : {len(v_boxes)}", (20, 40), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
+    cv.putText(image, f"Count of people = : {len(v_boxes)}", (50, 40), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
         
     return image
 
@@ -69,7 +69,7 @@ def detect_image(image):
     boxes = list() 
     # define the expected input shape for the model
     input_w, input_h = 416, 416
-
+    print(12321421432)
     new_image, image_w, image_h = load_image_pixels(image, (input_w, input_h))
 
     # make prediction

@@ -1,16 +1,20 @@
-# CV_NN_TESTING
+#  ПО для распознавания и подсчёта студентов в аудитории
 
 <div  align="center">
+    <h1>RLP</h1>
     <p>
         <a  href="#">
-            <img  src="https://raw.githubusercontent.com/DmodvGH/testing/master/logo.png"  width="100px"  height="100px"  alt="py logo" />
+            <img  src="logo.png"  width="100px"  height="100px"  alt="py logo" />
         </a>
     </p>
 </div>
 
+___
+
 ## Что это?
 
 Это репозиторий, который мы используем для хранения наших знаний, полученных в ходе проектной деятельности.
+
 
 ## Как этим пользоваться
 
@@ -19,7 +23,22 @@
 ```bash
 $ python -m pip install -r requirements.txt
 ```
-## 
-#### Возникли проблемы 
+
+## Интерфейс
+<p>
+    <a  href="#">
+        <img  src="media/1.png" />
+    </a>
+    <a  href="#">
+        <img  src="media/2.png"/>
+        </a>
+    <a  href="#">
+        <img  src="media/3.png"/>
+    </a>
+    <a  href="#">
+        <img  src="media/4.png"/>
+    </a>
+</p>
+
+## Возникли проблемы 
 Если у вас возникают какие-то ошибки при использование скриптов, которые находятся в _этом репозитории_, в этом случае вы можете получить иструкцию по решению этой ошибки в [решение проблем]( https://www.google.ru/ "решение ошибок").
-####

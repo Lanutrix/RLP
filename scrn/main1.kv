@@ -1,42 +1,127 @@
-# : import KivyCamera main1.KivyCamera
 
+# : import Root main1.Root
 <CameraClick>
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'fon.jpg'
     orientation: 'vertical'
-    btn: btn
+    
+    
+    btn1:btn1
+    btn2:btn2
+    btn3:btn3
+    btn4:btn4
     name_input: name
     lbl: lbl
     exibtn: exibtn
     Button:
         id: exibtn
-        font_size: 15
-        color: 0,1,0,1
+        font_name: 'appetite'
+        font_size: 20
+        color: 1,1,1,1
+        background_color:(1, 89/255, 0, 0.6)
         text: 'Выйти из программы'
         size_hint_y: None
-        height: '24dp'
+        height: '58dp'
         on_press: root.exitapp()
 
     
     Label:
+        
+                
+        font_name: 'appetite'
+        italic: True
         id: lbl
-        text: 'Введите индекс видеопотока'
+        color: 1,1,1,1
+        text: 'Выберите источник'
         font_size: 30
         size_hint_y: None
-        height: '48dp'
+        height: '70dp'
           
     TextInput:
+        
+        
+        font_name: 'appetite'
         id: name
         multiline: False
         height: 10
         font_size: 20
+        color: 1,1,1,1
         size_hint_y: None
-        height: '48dp'
+        height: '0dp'
+        
+    
     Button:
-        id: btn
+        font_name: 'appetite'
+        id: btn1
         font_size: 20
-        color: 0,1,1,1
-        text: 'Запуск мониторинга'
+        background_color:(1, 89/255, 0, 0.7)
+        
+        color: 1,1,1,1
+        size:(32, 32)
+        # size_hint:(.5, .5)
+        # pos:(300, 250)
+       
+        text: 'Трансляция с камеры'
         size_hint_y: None
-        height: '48dp'
-        on_press: root.say_hello()
-            
+        height: '60dp'
+        on_press: root.translation_hello()
+    
+    Button:
+        id: btn2
+        # size_hint:(.7, .7)
+        background_color:(1, 89/255, 0, 0.7)
+        font_name: 'appetite'
+        text: 'Выбрать файл'
+        color: 1,1,1,1
+        font_size: 20
+        size_hint_y: None
+        height: '62dp'
+        on_release: root.show_load()        
 
+    Button:
+        font_name: 'appetite'
+        # size_hint:(.6, .6)
+        background_color:(1, 89/255, 0, 0.7)
+        id: btn3
+        font_size: 20
+        color: 1,1,1,1
+        text: 'Ввести индекс видеопотока'
+        size_hint_y: None
+        height: '64dp'
+        on_press: root.index_chooser()
+    Button:
+        font_name: 'appetite'
+        id: btn4
+        # size_hint:(.0, .0)
+        background_color:(0, 0, 0, 0)
+        font_size: 0
+        color: 1,1,1,1
+        text: 'Начать мониторинг'
+        size_hint_y: None
+        height: '0dp'
+        on_press: root.say_hello()
+    
+   
+
+    
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Отмена"
+                on_release: root.cancel()
+
+            Button:
+                text: "Загрузить"
+                on_release: root.load(filechooser.path, filechooser.selection)
